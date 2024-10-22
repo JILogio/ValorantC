@@ -53,9 +53,11 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: npm
+          app-dir: esports-valorant-backend/
       - run:
           name: Security Audit
           command: npm audit  # Análisis de vulnerabilidades en las dependencias
+          working_directory: esports-valorant-backend/
 
 workflows:
     # Primer workflow: Clonar el repo y correr los tests
