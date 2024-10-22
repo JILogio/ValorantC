@@ -7,7 +7,7 @@ orbs:
 executors:
   node-executor:
     docker:
-      - image: circleci/node:20.16
+      - image: circleci/node:20
 
 jobs:
   # Job 1: Clonar el repositorio
