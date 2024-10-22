@@ -10,7 +10,7 @@ executors:
       - image: node:18.17
 
 jobs:
-  # Job 1: Clonar el repositorio
+  # Job: Clonar el repositorio
   clone_repo:
     executor: node-executor
     steps:
@@ -19,7 +19,7 @@ jobs:
           name: Verify Repo Clone
           command: ls -al  # Verificar que se ha clonado correctamente
 
-  # Job 2: Correr los tests
+  # Job: Correr los tests
   run_tests:
     executor: node-executor
     parallelism: 2
@@ -46,11 +46,33 @@ jobs:
           command: npm run lint  # Comando para revisar el estilo de código
           working_directory: esports-valorant-backend/
 
+  # Job: Análisis de seguridad con npm audit
+  security_audit:
+    executor: node-executor
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Security Audit
+          command: npm audit  # Análisis de vulnerabilidades en las dependencias
+
 workflows:
-  # Segundo workflow: Lint y Build
-  lint_and_build:
+    # Primer workflow: Clonar el repo y correr los tests
+  clone_and_test:
+    jobs:
+      - clone_repo
+      - run_tests:
+          requires:
+            - clone_repo
+
+  # Segundo workflow: Lint y Análisis de Seguridad
+  lint_and_security_audit:
     jobs:
       - lint_code
+      - security_audit:
+          requires:
+            - lint_code
 
 # Notificaciones de Slack
 notify_on_success:
