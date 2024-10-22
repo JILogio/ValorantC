@@ -46,14 +46,6 @@ jobs:
           working_directory: esports-valorant-backend/
 
 workflows:
-  # Primer workflow: Clonar el repo y correr los tests
-  clone_and_test:
-    jobs:
-      - clone_repo
-      - run_tests:
-          requires:
-            - clone_repo
-
   # Segundo workflow: Lint y Build
   lint_and_build:
     jobs:
