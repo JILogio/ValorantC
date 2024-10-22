@@ -19,6 +19,7 @@ jobs:
   # Job 2: Correr los tests
   run_tests:
     machine: true  # Usa una máquina
+    working_directory: ~/repo/esports-valorant-backend
     steps:
       - checkout
       - run:
@@ -27,6 +28,19 @@ jobs:
       - run:
           name: Run Tests
           command: npm run test  # Comando para correr las pruebas
+
+  # Job: Lint Code
+  lint_code:
+    machine: true  # Usa una máquina sin Docker
+    working_directory: ~/repo/esports-valorant-backend  # Nos movemos a la carpeta backend
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm install  # Instala las dependencias en el backend
+      - run:
+          name: Lint Code
+          command: npm run lint  # Comando para revisar el estilo de código
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
