@@ -19,7 +19,7 @@ jobs:
   # Job 2: Correr los tests
   run_tests:
     machine: true  # Usa una máquina
-    working_directory: ~/ValorantC/esports-valorant-backend/
+    working_directory: /ValorantC/esports-valorant-backend/
     steps:
       - checkout
       - run:
@@ -32,7 +32,7 @@ jobs:
   # Job: Lint Code
   lint_code:
     machine: true  # Usa una máquina
-    working_directory: ~/ValorantC/esports-valorant-backend/
+    working_directory: /ValorantC/esports-valorant-backend/
     steps:
       - checkout
       - run:
