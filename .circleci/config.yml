@@ -25,11 +25,12 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          app-dir: esports-valorant-backend
           pkg-manager: npm
+          app-dir: esports-valorant-backend/
       - run:
           name: Run Tests
           command: npm run test  # Comando para correr las pruebas
+          working_directory: esports-valorant-backend/
 
   # Job: Lint Code
   lint_code:
@@ -37,11 +38,12 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          app-dir: esports-valorant-backend
           pkg-manager: npm
+          app-dir: esports-valorant-backend/
       - run:
           name: Lint Code
           command: npm run lint  # Comando para revisar el estilo de código
+          working_directory: esports-valorant-backend/
 
 workflows:
   # Primer workflow: Clonar el repo y correr los tests
