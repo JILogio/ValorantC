@@ -7,7 +7,7 @@ orbs:
 executors:
   node-executor:
     docker:
-      - image: circleci/node:18
+      - image: circleci/node:16.10
 
 jobs:
   # Job 1: Clonar el repositorio
@@ -22,6 +22,7 @@ jobs:
   # Job 2: Correr los tests
   run_tests:
     executor: node-executor
+    parallelism: 2
     steps:
       - checkout
       - node/install-packages:
