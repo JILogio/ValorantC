@@ -25,6 +25,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
+          app-dir: esports-valorant-backend
           pkg-manager: npm
       - run:
           name: Run Tests
@@ -36,6 +37,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
+          app-dir: esports-valorant-backend
           pkg-manager: npm
       - run:
           name: Lint Code
