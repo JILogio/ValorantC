@@ -32,7 +32,7 @@ jobs:
   # Job: Lint Code
   lint_code:
     machine: true  # Usa una máquina
-    working_directory: esports-valorant-backend
+    working_directory: ~/project/esports-valorant-backend
     steps:
       - checkout
       - run:
@@ -44,14 +44,6 @@ jobs:
 
 # Orchestrate jobs using workflows
 workflows:
-  # Primer workflow: Clonar el repo y correr los tests
-  clone_and_test:
-    jobs:
-      - clone_repo
-      - run_tests:
-          requires:
-            - clone_repo
-
   # Segundo workflow: Lint
   lint_and_build:
     jobs:
