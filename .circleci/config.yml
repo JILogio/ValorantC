@@ -32,7 +32,7 @@ jobs:
   # Job: Lint Code
   lint_code:
     machine: true  # Usa una máquina
-    working_directory: /home/circleci/esports-valorant-backend
+    working_directory: /home/esports-valorant-backend
     steps:
       - checkout
       - run:
